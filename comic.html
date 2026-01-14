@@ -5,62 +5,89 @@
 <title>FurinxManhwa – Rozdziały</title>
 
 <style>
+/* ===== RESET / BAZA ===== */
 body {
   margin: 0;
-  padding: 0px;
   background: #111;
   color: white;
   font-family: Arial, sans-serif;
 }
 
-/* linki */
 a {
   color: white;
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* okładka – TAK JAK BYŁO */
-img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+/* ===== POWRÓT ===== */
+.back {
   display: block;
-  margin: 0 auto 16px auto;
+  padding: 16px;
+  font-size: 16px;
 }
 
-/* lista */
-ul {
-  padding-left: 0;
+/* ===== OKŁADKA ===== */
+.cover {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
 }
 
-/* rozdziały – JEDYNA POPRAWKA */
-li {
-  li {
+/* ===== SEKCJA ROZDZIAŁÓW ===== */
+.section {
+  padding: 24px 16px;
+}
+
+.section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ===== LISTA ROZDZIAŁÓW ===== */
+.chapter-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chapter-list li {
   margin-bottom: 12px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 50px;
+}
+
+.chapter-list a {
+  display: block;
+  background: #1c1c1c;
+  padding: 18px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.chapter-list a:active {
+  background: #2a2a2a;
 }
 </style>
 </head>
 
 <body>
 
-<a href="index.html">← Powrót</a>
+<a class="back" href="index.html">← Powrót</a>
 
-<img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg" alt="FurinxManhwa">
+<img
+  class="cover"
+  src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg"
+  alt="Swallow You Whole"
+>
 
-<h2>Rozdziały</h2>
-<ul>
-  <li><a href="reader.html?chapter=1">Rozdział 1</a></li>
-  <li><a href="reader.html?chapter=2">Rozdział 2</a></li>
-</ul>
+<div class="section">
+  <h2>Rozdziały</h2>
+  <ul class="chapter-list">
+    <li><a href="reader.html?chapter=1">Rozdział 1</a></li>
+    <li><a href="reader.html?chapter=2">Rozdział 2</a></li>
+  </ul>
+</div>
 
 </body>
 </html>
