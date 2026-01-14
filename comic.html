@@ -2,29 +2,54 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <title>FurinxManhwa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    header img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .comic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .comic-card {
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+    }
+
+    .comic-card img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+
+    .comic-card img:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0;">
+<body>
 
-<h1>FurinxManhwa</h1>
-
-<a href="comic.html style="text-decoration:none; color:white;">
-  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg"
-       style="width:100vw; height:auto; display:block;">
-</a>
-  
-  
-</body>
-</html>
-
-<h2>Rozdziały</h2>
-
-<ul>
-  <li>
-    <a href="reader.html?chapter=1" style="color:white;">
-      Rozdział 1
-    </a>
-  </li>
-</ul>
-
-</body>
-</html>
+<header>
+  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg" alt="okładka komiksu">
+</header>
