@@ -1,73 +1,48 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>FurinxManhwa</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-    }
-
-    header img {
-      width: 100%;
-      display: block;
-      height: auto;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 16px 0;
-    }
-
-    .comic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
-      padding: 16px;
-    }
-
-    .comic-card {
-      text-align: center;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
-    }
-
-    .comic-card img {
-      width: 100%;
-      border-radius: 8px;
-      transition: transform 0.2s;
-    }
-
-    .comic-card img:hover {
-      transform: scale(1.05);
-    }
-  </style>
+<meta charset="UTF-8">
+<title>FurinxManhwa</title>
+<style>
+body { margin:0; background:#111; color:white; font-family:Arial, sans-serif; }
+header img { width:100%; display:block; }
+h1 { text-align:center; margin:16px 0; }
+h2 { margin:16px; }
+.scroll-container { overflow-x:auto; padding:0 16px; }
+.scroll-row { display:flex; gap:16px; }
+.comic-card { flex:0 0 auto; text-align:center; text-decoration:none; color:white; cursor:pointer; }
+.comic-card img { width:150px; border-radius:8px; transition:transform 0.2s; }
+.comic-card img:hover { transform:scale(1.05); }
+</style>
 </head>
 <body>
 
 <header>
-  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/okladka.png" alt="Banner główny">
+  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/okladka.png" alt="Banner">
 </header>
 
 <h1>Komiksy</h1>
+<div class="scroll-container">
+  <div class="scroll-row">
+    <a class="comic-card" href="comic.html">
+      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg" alt="FurinxManhwa">
+      <p>Swallow You Whole</p>
+    </a>
+    <a class="comic-card" href="comic2.html">
+      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp" alt="Inny Komiks">
+      <p>The Hounds Of Sisyphus</p>
+    </a>
+  </div>
+</div>
 
-<div class="comic-grid">
-  <a class="comic-card" href="comic.html">
-    <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg" alt="FurinxManhwa">
-    <p>Swallow You Whole</p>
-  </a>
-
-  <!-- Możesz dorzucać kolejne komiksy w tym samym formacie -->
-  <a class="comic-card" href="comic2.html">
-    <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp" alt="Inny Komiks">
-    <p>The Hounds Of Sisyphus</p>
-  </a>
-
+<h2>Horror</h2>
+<div class="scroll-container">
+  <div class="scroll-row">
+    <a class="comic-card" href="comic3.html">
+      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp" alt="Horror 1">
+      <p>The Hounds Of Sisyphus</p>
+    </a>
+  </div>
 </div>
 
 </body>
