@@ -3,39 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Reader</title>
-
 <style>
-body {
-  margin: 0;
-  background: black;
-}
-
-img {
-  display: block;
-  width: 100vw;
-}
+body { margin:0; background:black; }
+img { display:block; width:100vw; }
 </style>
 </head>
-
 <body>
 
 <div id="comic-container"></div>
 
 <script>
-// =======================
-// PARAMETRY URL
-// =======================
-const params = new URLSearchParams(window.location.search);
-const comic = params.get("comic");     // np. swallowyouwhole
-const chapter = Number(params.get("chapter"));
- // np. 1
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const comicKey = params.get("comic");
+  const chapter = Number(params.get("chapter"));
 
-// =======================
-// DANE KOMIKSÓW
-// =======================
-const comics = {
-  swallowyouwhole: {
-    1: [
+  const comics = {
+    swallowyouwhole: {
+      1: [
 "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%201.jpg",
 "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%202.jpg",
 "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%203.jpg",
@@ -61,66 +46,23 @@ const comics = {
 "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2023.jpg">,
 "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2024.jpg">,
 "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2025.jpg">,
-    ]
-  },
+        // reszta stron
+      ]
+    }
+  };
 
-  thehoundsofsisyphus: {
-    1: []
+  const container = document.getElementById("comic-container");
+
+  if (comicKey && comics[comicKey] && comics[comicKey][chapter]) {
+    comics[comicKey][chapter].forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      container.appendChild(img);
+    });
+  } else {
+    container.innerHTML = "<p style='color:white; text-align:center; padding:50px;'>Brak obrazków dla tego rozdziału.</p>";
   }
-};
-
-// =======================
-// WYŚWIETLANIE OBRAZÓW
-// =======================
-const container = document.getElementById("comic-container");
-
-if (comics[comic] && comics[comic][chapter]) {
-  comics[comic][chapter].forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    container.appendChild(img);
-  });
-} else {
-  container.innerHTML = `
-    <p style="color:white;text-align:center;padding:50px;">
-      Brak rozdziału
-    </p>
-  `;
-}
-
-// =======================
-// ZAPIS "OSTATNIO CZYTANE"
-// =======================
-if (comic && chapter) {
-  let recent = JSON.parse(localStorage.getItem("recentComics")) || [];
-
-  // usuń duplikat
-  recent = recent.filter(item => item.comic !== comic);
-
-  // dodaj na początek
-  recent.unshift({
-    comic: comic,
-    chapter: chapter,
-    time: Date.now()
-  });
-
-  // limit
-  recent = recent.slice(0, 5);
-
-  localStorage.setItem("recentComics", JSON.stringify(recent));
-}
-</script>
-<script>
-const params = new URLSearchParams(window.location.search);
-const comic = params.get("comic");
-
-if (comic) {
-  let recent = JSON.parse(localStorage.getItem("recentComics")) || [];
-  recent = recent.filter(c => c !== comic);
-  recent.unshift(comic);
-  recent = recent.slice(0, 5);
-  localStorage.setItem("recentComics", JSON.stringify(recent));
-}
+})();
 </script>
 
 </body>
