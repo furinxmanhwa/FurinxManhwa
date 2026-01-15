@@ -84,6 +84,25 @@ if (comics[comic] && comics[comic][chapter]) {
   container.innerHTML = "<p style='color:white; text-align:center; padding:50px;'>Brak obrazków dla tego rozdziału.</p>";
 }
 </script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const comic = params.get("comic");
+
+if (comic) {
+  let recent = JSON.parse(localStorage.getItem("recentComics")) || [];
+
+  // usuń duplikaty
+  recent = recent.filter(c => c !== comic);
+
+  // dodaj na początek
+  recent.unshift(comic);
+
+  // max 3
+  recent = recent.slice(0, 3);
+
+  localStorage.setItem("recentComics", JSON.stringify(recent));
+}
+</script>
 
 </body>
 </html>
