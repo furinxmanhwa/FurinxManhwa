@@ -87,18 +87,6 @@ h2 {
 .arrow.left { left: 0; }
 .arrow.right { right: 0; }
 
-  .cover-wrapper {
-  position: relative; /* żeby serduszko było pozycjonowane względem obrazka */
-  display: inline-block;
-}
-
-.cover-wrapper img {
-  width: 300px; /* lub 28vw, jeśli chcesz responsywnie */
-  border-radius: 9px;
-  display: block;
-}
-
-
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   .comic-card img { width: 28vw; }
@@ -117,9 +105,6 @@ h2 {
 <!-- ===== OSTATNIO CZYTANE (NOWE, ALE NIE RUSZA UI) ===== -->
 <h2 id="recent-title" style="display:none;">Ostatnio czytane</h2>
 <div id="recent-wrapper"></div>
-
-  <h2 id="favorites-title" style="display:none;">Twoje ulubione</h2>
-<div id="favorites-wrapper"></div>
 
 <h1>Komiksy</h1>
 
@@ -196,6 +181,24 @@ const comicsData = {
   }
 };
 
+if (recent.length > 0) {
+  document.getElementById("recent-title").style.display = "block";
+
+  document.getElementById("recent-wrapper").innerHTML = `
+    <div class="scroll-wrapper">
+      <div class="scroll-container">
+        <div class="scroll-row">
+          ${recent.map(c => `
+            <a class="comic-card" href="${comicsData[c].link}">
+              <img src="${comicsData[c].cover}">
+              <p>${comicsData[c].name}</p>
+            </a>
+          `).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
 </script>
 
 </body>
