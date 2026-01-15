@@ -3,26 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <title>FurinxManhwa</title>
+
 <style>
-body { margin:0; background:#111; color:white; font-family:Arial, sans-serif; }
-header img { width:100%; display:block; font-size: 50px; }
-h1 { text-align:center; margin:16px 0; font-size: 50px; }
-h2 { margin:16px; font-size: 50px;}
-.scroll-container { overflow-x:auto; padding:0 16px; }
-.scroll-row { display:flex; gap:16px; }
-.comic-card { flex:0 0 auto; text-align:center; text-decoration:none; color:white; cursor:pointer; }
-.comic-card img { width:300px; border-radius:9px; transition:transform 0.2s; }
-.comic-card img:hover { transform:scale(1.05); }
+body {
+  margin:0;
+  background:#111;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+/* ===== HEADER ===== */
+header img {
+  width:100%;
+  display:block;
+}
+
+/* ===== NAGŁÓWKI ===== */
+h1 {
+  text-align:center;
+  margin:16px 0;
+  font-size:50px;
+}
+
+h2 {
+  margin:16px;
+  font-size:50px;
+}
+
+/* ===== SCROLL ===== */
+.scroll-wrapper {
+  position: relative;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  padding: 0 16px;
+  scroll-behavior: smooth;
+}
+
+.scroll-row {
+  display: flex;
+  gap: 16px;
+}
+
+/* ===== KARTA KOMIKSU ===== */
+.comic-card {
+  flex: 0 0 auto;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.comic-card img {
+  width: 300px;
+  border-radius: 9px;
+  transition: transform 0.2s;
+}
+
+.comic-card img:hover {
+  transform: scale(1.05);
+}
+
 .comic-card p {
   font-size: 30px;
   margin-top: 10px;
   font-weight: 600;
-  letter-spacing: 0.3px;
-  line-height: 1.3;
 }
 
+/* ===== STRZAŁKI ===== */
+.arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 60px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow.left {
+  left: 0;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .comic-card img {
+    width: 28vw; /* ~3 okładki na ekran */
+  }
+
+  .comic-card p {
+    font-size: 22px;
+  }
+
+  .arrow {
+    display: none; /* na telefonie swipe */
+  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -30,34 +116,71 @@ h2 { margin:16px; font-size: 50px;}
 </header>
 
 <h1>Komiksy</h1>
-<div class="scroll-container">
-  <div class="scroll-row">
-    <a class="comic-card" href="comic-swallow-you-whole.html">
-      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg" alt="FurinxManhwa">
-      <p>Swallow You Whole</p>
-    </a>
-    <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
-      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp" alt="Inny Komiks">
-      <p>The Hounds Of Sisyphus</p>
-    </a>
+
+<!-- ===== KATEGORIA 1 ===== -->
+<div class="scroll-wrapper">
+  <button class="arrow left">‹</button>
+
+  <div class="scroll-container">
+    <div class="scroll-row">
+
+      <a class="comic-card" href="comic-swallow-you-whole.html">
+        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg">
+        <p>Swallow You Whole</p>
+      </a>
+
+      <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
+        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp">
+        <p>The Hounds Of Sisyphus</p>
+      </a>
+
+      <a class="comic-card" href="comic-love-remedy.html">
+  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg">
+  <p>Love Remedy</p>
+</a>
+
+    </div>
   </div>
-</div>
-  <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
-      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg" alt="Inny Komiks">
-      <p>Love Remedy</p>
-    </a>
-  </div>
+
+  <button class="arrow right">›</button>
 </div>
 
 <h2>Horror</h2>
-<div class="scroll-container">
-  <div class="scroll-row">
-    <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
-      <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp" alt="Horror 1">
-      <p>The Hounds Of Sisyphus</p>
-    </a>
+
+<!-- ===== KATEGORIA 2 ===== -->
+<div class="scroll-wrapper">
+  <button class="arrow left">‹</button>
+
+  <div class="scroll-container">
+    <div class="scroll-row">
+
+      <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
+        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp">
+        <p>The Hounds Of Sisyphus</p>
+      </a>
+
+    </div>
   </div>
+
+  <button class="arrow right">›</button>
 </div>
+
+<!-- ===== JS STRZAŁEK ===== -->
+<script>
+document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
+  const container = wrapper.querySelector(".scroll-container");
+  const left = wrapper.querySelector(".left");
+  const right = wrapper.querySelector(".right");
+
+  left.onclick = () => {
+    container.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  right.onclick = () => {
+    container.scrollBy({ left: 300, behavior: "smooth" });
+  };
+});
+</script>
 
 </body>
 </html>
