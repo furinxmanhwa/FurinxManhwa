@@ -6,15 +6,28 @@
 
 <style>
 body {
-  margin: 0;
-  background: #111;
-  color: white;
-  font-family: Arial, sans-serif;
+  margin:0;
+  background:#111;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+/* ===== HEADER ===== */
+header img {
+  width:100%;
+  display:block;
 }
 
 /* ===== NAGŁÓWKI ===== */
-h1, h2 {
-  margin: 16px;
+h1 {
+  text-align:center;
+  margin:16px 0;
+  font-size:50px;
+}
+
+h2 {
+  margin:16px;
+  font-size:50px;
 }
 
 /* ===== SCROLL ===== */
@@ -25,6 +38,7 @@ h1, h2 {
 .scroll-container {
   overflow-x: auto;
   padding: 0 16px;
+  scroll-behavior: smooth;
 }
 
 .scroll-row {
@@ -32,89 +46,154 @@ h1, h2 {
   gap: 16px;
 }
 
-/* ===== KARTA ===== */
+/* ===== KARTA KOMIKSU ===== */
 .comic-card {
+  flex: 0 0 auto;
+  text-align: center;
   text-decoration: none;
   color: white;
-  text-align: center;
 }
 
 .comic-card img {
-  width: 220px;
-  border-radius: 8px;
+  width: 300px;
+  border-radius: 9px;
+  transition: transform 0.2s;
+}
+
+.comic-card img:hover {
+  transform: scale(1.05);
 }
 
 .comic-card p {
-  margin-top: 8px;
-  font-size: 18px;
+  font-size: 30px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* ===== STRZAŁKI ===== */
+.arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 60px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow.left { left: 0; }
+.arrow.right { right: 0; }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .comic-card img { width: 28vw; }
+  .comic-card p { font-size: 22px; }
+  .arrow { display: none; }
 }
 </style>
 </head>
 
 <body>
 
+<header>
+  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/okladka.png">
+</header>
+
+<!-- ===== OSTATNIO CZYTANE (NOWE, ALE NIE RUSZA UI) ===== -->
 <h2 id="recent-title" style="display:none;">Ostatnio czytane</h2>
 <div id="recent-wrapper"></div>
 
 <h1>Komiksy</h1>
 
 <div class="scroll-wrapper">
+  <button class="arrow left">‹</button>
+
   <div class="scroll-container">
     <div class="scroll-row">
 
-      <a class="comic-card" href="reader.html?comic=swallowyouwhole&chapter=1">
+      <a class="comic-card" href="comic-swallow-you-whole.html">
         <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg">
         <p>Swallow You Whole</p>
       </a>
 
-      <a class="comic-card" href="reader.html?comic=hounds&chapter=1">
+      <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
         <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp">
         <p>The Hounds Of Sisyphus</p>
       </a>
 
+      <a class="comic-card" href="comic-love-remedy.html">
+        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg">
+        <p>Love Remedy</p>
+      </a>
+
+      <a class="comic-card" href="comic-devils-knight.html">
+        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Devil's%20Knight.jpeg">
+        <p>Devil's Knight</p>
+      </a>
+
     </div>
   </div>
+
+  <button class="arrow right">›</button>
 </div>
 
 <script>
-// =======================
-// MAPA KOMIKSÓW
-// =======================
+/* STRZAŁKI – TWOJE, NIETKNIĘTE */
+document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
+  const container = wrapper.querySelector(".scroll-container");
+  const left = wrapper.querySelector(".left");
+  const right = wrapper.querySelector(".right");
+
+  if (!left || !right) return;
+
+  left.onclick = () => container.scrollBy({ left: -300, behavior: "smooth" });
+  right.onclick = () => container.scrollBy({ left: 300, behavior: "smooth" });
+});
+</script>
+
+<script>
+/* ===== OSTATNIO CZYTANE – LOGIKA ===== */
+const recent = JSON.parse(localStorage.getItem("recentComics")) || [];
+
 const comicsData = {
   swallowyouwhole: {
     name: "Swallow You Whole",
     cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg",
-    link: "reader.html?comic=swallowyouwhole&chapter=1"
+    link: "comic-swallow-you-whole.html"
   },
   hounds: {
     name: "The Hounds Of Sisyphus",
     cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp",
-    link: "reader.html?comic=hounds&chapter=1"
+    link: "comic-the-hounds-of-sisyphus.html"
+  },
+  loveremedy: {
+    name: "Love Remedy",
+    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg",
+    link: "comic-love-remedy.html"
+  },
+  devilsknight: {
+    name: "Devil's Knight",
+    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Devil's%20Knight.jpeg",
+    link: "comic-devils-knight.html"
   }
 };
-
-// =======================
-// OSTATNIO CZYTANE
-// =======================
-const recent = JSON.parse(localStorage.getItem("recentComics")) || [];
 
 if (recent.length > 0) {
   document.getElementById("recent-title").style.display = "block";
 
-  const wrapper = document.getElementById("recent-wrapper");
-
-  wrapper.innerHTML = `
+  document.getElementById("recent-wrapper").innerHTML = `
     <div class="scroll-wrapper">
       <div class="scroll-container">
         <div class="scroll-row">
-          ${recent
-            .filter(item => comicsData[item.comic])
-            .map(item => `
-              <a class="comic-card" href="${comicsData[item.comic].link}">
-                <img src="${comicsData[item.comic].cover}">
-                <p>${comicsData[item.comic].name}</p>
-              </a>
-            `).join("")}
+          ${recent.map(c => `
+            <a class="comic-card" href="${comicsData[c].link}">
+              <img src="${comicsData[c].cover}">
+              <p>${comicsData[c].name}</p>
+            </a>
+          `).join("")}
         </div>
       </div>
     </div>
