@@ -227,10 +227,8 @@ if (recent.length > 0) {
     </div>
   `;
 }
-</script>
-<script>
-const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+// Inicjalizacja serduszek w głównej sekcji
 document.querySelectorAll(".comic-card .heart").forEach(heart => {
   const card = heart.parentElement;
   const key = card.dataset.comic;
@@ -247,50 +245,26 @@ document.querySelectorAll(".comic-card .heart").forEach(heart => {
       heart.textContent = "❤️";
     }
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    renderFavorites(); // odśwież ulubione po kliknięciu
+    renderFavorites();
   });
 });
 
-function renderFavorites() {
-  const wrapper = document.getElementById("favorites-wrapper");
-  const title = document.getElementById("favorites-title");
-
-  if (favorites.length === 0) {
-    wrapper.innerHTML = "";
-    title.style.display = "none";
-    return;
-  }
-
-  title.style.display = "block";
-
-  wrapper.innerHTML = `
-    <div class="scroll-wrapper">
-      <div class="scroll-container">
-        <div class="scroll-row">
-          ${favorites.map(key => {
-            const card = document.querySelector(`.comic-card[data-comic="${key}"]`);
-            if (!card) return "";
-            const imgSrc = card.querySelector("img").src;
-            const href = card.href;
-            const name = card.querySelector("p").textContent;
-            return `
-              <a class="comic-card" href="${href}" data-comic="${key}">
-                <div class="cover-wrapper">
-                  <img src="${imgSrc}">
-                  <span class="heart">❤️</span>
-                </div>
-                <p>${name}</p>
-              </a>
-            `;
-          }).join("")}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-// Wywołaj od razu po wczytaniu strony
+// Wywołanie renderowania ulubionych na starcie
 renderFavorites();
+</script>
+
+<script>
+// Strzałki w scrollu
+document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
+  const container = wrapper.querySelector(".scroll-container");
+  const left = wrapper.querySelector(".left");
+  const right = wrapper.querySelector(".right");
+
+  if (left && right) {
+    left.onclick = () => { container.scrollBy({ left: -300, behavior: "smooth" }); };
+    right.onclick = () => { container.scrollBy({ left: 300, behavior: "smooth" }); };
+  }
+});
 </script>
 
 </body>
