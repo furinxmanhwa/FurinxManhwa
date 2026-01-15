@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>FurinxManhwa</title>
-
 <style>
 body {
   margin:0;
@@ -11,85 +10,67 @@ body {
   color:white;
   font-family:Arial, sans-serif;
 }
+header img { width:100%; display:block; }
 
-/* ===== HEADER ===== */
-header img {
-  width:100%;
-  display:block;
-}
-
-/* ===== NAGŁÓWKI ===== */
+/* NAGŁÓWKI */
 h1, h2 {
-  margin:16px;
+  text-align:center;
+  margin:16px 0;
   font-size:50px;
 }
 
-/* ===== SCROLL ===== */
-.scroll-wrapper {
-  position: relative;
-}
-
+/* SCROLL */
+.scroll-wrapper { position: relative; margin-bottom:40px; }
 .scroll-container {
   overflow-x: auto;
-  padding: 0 16px;
+  padding:0 16px;
   scroll-behavior: smooth;
 }
+.scroll-row { display:flex; gap:16px; }
 
-.scroll-row {
-  display: flex;
-  gap: 16px;
-}
-
-/* ===== KARTA KOMIKSU ===== */
+/* KARTY KOMIKSU */
 .comic-card {
-  flex: 0 0 auto;
-  text-align: center;
-  text-decoration: none;
-  color: white;
+  flex:0 0 auto;
+  text-align:center;
+  text-decoration:none;
+  color:white;
 }
-
 .comic-card img {
-  width: 300px;
-  border-radius: 9px;
-  transition: transform 0.2s;
+  width:300px;
+  border-radius:9px;
+  transition:transform 0.2s;
 }
-
-.comic-card img:hover {
-  transform: scale(1.05);
-}
-
+.comic-card img:hover { transform:scale(1.05); }
 .comic-card p {
-  font-size: 30px;
-  margin-top: 10px;
-  font-weight: 600;
+  font-size:30px;
+  margin-top:10px;
+  font-weight:600;
 }
 
-/* ===== STRZAŁKI ===== */
+/* STRZAŁKI */
 .arrow {
   position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
+  top:40%;
+  transform:translateY(-50%);
   background: rgba(0,0,0,0.6);
-  color: white;
-  border: none;
-  font-size: 60px;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 10;
+  color:white;
+  border:none;
+  font-size:60px;
+  padding:10px 20px;
+  cursor:pointer;
+  z-index:10;
 }
+.arrow.left { left:0; }
+.arrow.right { right:0; }
 
-.arrow.left { left: 0; }
-.arrow.right { right: 0; }
-
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .comic-card img { width: 28vw; }
-  .comic-card p { font-size: 22px; }
-  .arrow { display: none; } /* swipe na telefonie */
+/* MOBILE */
+@media (max-width:768px){
+  .comic-card img { width:28vw; }
+  .comic-card p { font-size:22px; }
+  .arrow { display:none; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -100,7 +81,6 @@ h1, h2 {
 <div id="recent-wrapper"></div>
 
 <h1>Komiksy</h1>
-
 <!-- ===== KATEGORIA 1 ===== -->
 <div class="scroll-wrapper">
   <button class="arrow left">‹</button>
@@ -110,17 +90,10 @@ h1, h2 {
         <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg">
         <p>Swallow You Whole</p>
       </a>
-
-      <a class="comic-card" href="reader.html?comic=thehounds&chapter=1">
-        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp">
-        <p>The Hounds Of Sisyphus</p>
-      </a>
-
       <a class="comic-card" href="reader.html?comic=loveremedy&chapter=1">
         <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg">
         <p>Love Remedy</p>
       </a>
-
       <a class="comic-card" href="reader.html?comic=devilsknight&chapter=1">
         <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Devil's%20Knight.jpeg">
         <p>Devil's Knight</p>
@@ -130,60 +103,52 @@ h1, h2 {
   <button class="arrow right">›</button>
 </div>
 
-<!-- ===== JS STRZAŁEK ===== -->
-<script>
-document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
-  const container = wrapper.querySelector(".scroll-container");
-  const left = wrapper.querySelector(".left");
-  const right = wrapper.querySelector(".right");
+<h2>Horror</h2>
+<!-- ===== KATEGORIA 2 ===== -->
+<div class="scroll-wrapper">
+  <button class="arrow left">‹</button>
+  <div class="scroll-container">
+    <div class="scroll-row">
+      <a class="comic-card" href="reader.html?comic=hounds&chapter=1">
+        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp">
+        <p>The Hounds Of Sisyphus</p>
+      </a>
+    </div>
+  </div>
+  <button class="arrow right">›</button>
+</div>
 
-  left.onclick = () => container.scrollBy({ left: -300, behavior: "smooth" });
-  right.onclick = () => container.scrollBy({ left: 300, behavior: "smooth" });
+<script>
+// STRZAŁKI
+document.querySelectorAll(".scroll-wrapper").forEach(wrapper=>{
+  const container=wrapper.querySelector(".scroll-container");
+  const left=wrapper.querySelector(".left");
+  const right=wrapper.querySelector(".right");
+  left.onclick=()=>container.scrollBy({left:-300,behavior:"smooth"});
+  right.onclick=()=>container.scrollBy({left:300,behavior:"smooth"});
 });
-</script>
 
-<!-- ===== OSTATNIO CZYTANE ===== -->
-<script>
+// OSTATNIO CZYTANE
 const recent = JSON.parse(localStorage.getItem("recentComics")) || [];
-
 const titles = {
-  swallowyouwhole: {
-    name: "Swallow You Whole",
-    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg",
-    link: "reader.html?comic=swallowyouwhole&chapter=1"
-  },
-  loveremedy: {
-    name: "Love Remedy",
-    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg",
-    link: "reader.html?comic=loveremedy&chapter=1"
-  },
-  thehounds: {
-    name: "The Hounds Of Sisyphus",
-    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp",
-    link: "reader.html?comic=thehounds&chapter=1"
-  },
-  devilsknight: {
-    name: "Devil's Knight",
-    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Devil's%20Knight.jpeg",
-    link: "reader.html?comic=devilsknight&chapter=1"
-  }
+  swallowyouwhole: { name:"Swallow You Whole", cover:"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg", link:"reader.html?comic=swallowyouwhole&chapter=1" },
+  loveremedy: { name:"Love Remedy", cover:"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg", link:"reader.html?comic=loveremedy&chapter=1" },
+  devilsknight: { name:"Devil's Knight", cover:"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Devil's%20Knight.jpeg", link:"reader.html?comic=devilsknight&chapter=1" },
+  hounds: { name:"The Hounds Of Sisyphus", cover:"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/The%20Hounds%20Of%20Sisyphus.webp", link:"reader.html?comic=hounds&chapter=1" }
 };
 
-if (recent.length > 0) {
-  document.getElementById("recent-title").style.display = "block";
-
+if(recent.length>0){
+  document.getElementById("recent-title").style.display="block";
   const wrapper = document.getElementById("recent-wrapper");
-
-  wrapper.innerHTML = `
+  wrapper.innerHTML=`
   <div class="scroll-wrapper">
     <div class="scroll-container">
       <div class="scroll-row">
-        ${recent.filter(c => titles[c]).map(c => `
+        ${recent.filter(c=>titles[c]).map(c=>`
           <a class="comic-card" href="${titles[c].link}">
             <img src="${titles[c].cover}">
             <p>${titles[c].name}</p>
-          </a>
-        `).join("")}
+          </a>`).join("")}
       </div>
     </div>
   </div>`;
