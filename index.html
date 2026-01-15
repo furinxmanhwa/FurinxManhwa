@@ -238,7 +238,7 @@ document.querySelectorAll(".comic-card .heart").forEach(heart => {
   if (favorites.includes(key)) heart.textContent = "❤️";
 
   heart.addEventListener("click", e => {
-    e.preventDefault(); // nie przechodzi w link od razu
+    e.preventDefault();
     if (favorites.includes(key)) {
       favorites.splice(favorites.indexOf(key), 1);
       heart.textContent = "♡";
@@ -247,9 +247,10 @@ document.querySelectorAll(".comic-card .heart").forEach(heart => {
       heart.textContent = "❤️";
     }
     localStorage.setItem("favorites", JSON.stringify(favorites));
+    renderFavorites(); // odśwież ulubione po kliknięciu
   });
 });
-</script>
+
 function renderFavorites() {
   const wrapper = document.getElementById("favorites-wrapper");
   const title = document.getElementById("favorites-title");
@@ -288,8 +289,9 @@ function renderFavorites() {
   `;
 }
 
-// Wywołaj po wczytaniu strony
+// Wywołaj od razu po wczytaniu strony
 renderFavorites();
+</script>
 
 </body>
 </html>
