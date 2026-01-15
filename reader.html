@@ -27,7 +27,8 @@ img {
 // =======================
 const params = new URLSearchParams(window.location.search);
 const comic = params.get("comic");     // np. swallowyouwhole
-const chapter = params.get("chapter"); // np. 1
+const chapter = Number(params.get("chapter"));
+ // np. 1
 
 // =======================
 // DANE KOMIKSÓW
