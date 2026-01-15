@@ -128,6 +128,9 @@ h2 {
 <h2 id="recent-title" style="display:none;">Ostatnio czytane</h2>
 <div id="recent-wrapper"></div>
 
+  <h2 id="favorites-title" style="display:none;">Twoje ulubione</h2>
+<div id="favorites-wrapper"></div>
+
 <h1>Komiksy</h1>
 
 <div class="scroll-wrapper">
@@ -247,6 +250,46 @@ document.querySelectorAll(".comic-card .heart").forEach(heart => {
   });
 });
 </script>
+function renderFavorites() {
+  const wrapper = document.getElementById("favorites-wrapper");
+  const title = document.getElementById("favorites-title");
+
+  if (favorites.length === 0) {
+    wrapper.innerHTML = "";
+    title.style.display = "none";
+    return;
+  }
+
+  title.style.display = "block";
+
+  wrapper.innerHTML = `
+    <div class="scroll-wrapper">
+      <div class="scroll-container">
+        <div class="scroll-row">
+          ${favorites.map(key => {
+            const card = document.querySelector(`.comic-card[data-comic="${key}"]`);
+            if (!card) return "";
+            const imgSrc = card.querySelector("img").src;
+            const href = card.href;
+            const name = card.querySelector("p").textContent;
+            return `
+              <a class="comic-card" href="${href}" data-comic="${key}">
+                <div class="cover-wrapper">
+                  <img src="${imgSrc}">
+                  <span class="heart">❤️</span>
+                </div>
+                <p>${name}</p>
+              </a>
+            `;
+          }).join("")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Wywołaj po wczytaniu strony
+renderFavorites();
 
 </body>
 </html>
