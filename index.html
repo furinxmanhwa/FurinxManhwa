@@ -196,62 +196,6 @@ const comicsData = {
   }
 };
 
-if (recent.length > 0) {
-  document.getElementById("recent-title").style.display = "block";
-
-  document.getElementById("recent-wrapper").innerHTML = `
-    <div class="scroll-wrapper">
-      <div class="scroll-container">
-        <div class="scroll-row">
-          ${recent.map(c => `
-            <a class="comic-card" href="${comicsData[c].link}">
-              <img src="${comicsData[c].cover}">
-              <p>${comicsData[c].name}</p>
-            </a>
-          `).join("")}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-// Inicjalizacja serduszek w głównej sekcji
-document.querySelectorAll(".comic-card .heart").forEach(heart => {
-  const card = heart.parentElement;
-  const key = card.dataset.comic;
-
-  if (favorites.includes(key)) heart.textContent = "❤️";
-
-  heart.addEventListener("click", e => {
-    e.preventDefault();
-    if (favorites.includes(key)) {
-      favorites.splice(favorites.indexOf(key), 1);
-      heart.textContent = "♡";
-    } else {
-      favorites.push(key);
-      heart.textContent = "❤️";
-    }
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    renderFavorites();
-  });
-});
-
-// Wywołanie renderowania ulubionych na starcie
-renderFavorites();
-</script>
-
-<script>
-// Strzałki w scrollu
-document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
-  const container = wrapper.querySelector(".scroll-container");
-  const left = wrapper.querySelector(".left");
-  const right = wrapper.querySelector(".right");
-
-  if (left && right) {
-    left.onclick = () => { container.scrollBy({ left: -300, behavior: "smooth" }); };
-    right.onclick = () => { container.scrollBy({ left: 300, behavior: "smooth" }); };
-  }
-});
 </script>
 
 </body>
