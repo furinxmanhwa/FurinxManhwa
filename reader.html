@@ -2,19 +2,10 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Rozdziały</title>
+<title>FurinxManhwa – Rozdziały</title>
 <style>
-body {
-  margin:0; 
-  padding:0; 
-  background:black;
-}
-
-img {
-  display:block; 
-  width:100vw; 
-  margin:0 0 0 0;
-}
+body { margin:0; padding:0; background:black; }
+img { display:block; width:100vw; margin:0; }
 </style>
 </head>
 <body>
@@ -22,84 +13,78 @@ img {
 <div id="comic-container"></div>
 
 <script>
-// 1️⃣ Pobieramy parametry z URL
+// Pobieramy parametry z URL
 const params = new URLSearchParams(window.location.search);
-const comic = params.get("comic");   // np. "swallow"
-const chapter = params.get("chapter"); // np. "1"
+const comic = params.get("comic");
+const chapter = params.get("chapter");
 
-// 2️⃣ Tutaj definiujesz wszystkie obrazy dla każdej serii i rozdziału
+// Definicja obrazków
 const comics = {
   swallowyouwhole: {
     1: [
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%201.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%202.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%203.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%204.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%205.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%206.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%207.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%208.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%209.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2010.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2011.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2012.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2013.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2014.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2015.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2016.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2017.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2018.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2019.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2020.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2021.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2022.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2023.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2024.jpg",
-"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2025.jpg",
-      // dodawaj wszystkie inne obrazki rozdziału 1
-    ],
-    2:  []
-  },
-  hounds: {
-    1: [
+      "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%201.jpg",
+      "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%202.jpg",
+      "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%203.jpg",
+      "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%204.jpg",
+      "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%205.jpg">
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%206.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%207.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%208.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%209.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2010.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2011.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2012.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2013.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2014.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2015.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2016.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2017.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2018.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2019.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2020.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2021.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2022.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2023.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2024.jpg">,
+"https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Syw%201%2025.jpg"> (edytowane)czwartek, 15 stycznia 2026 19:30
+:heart:
+Kliknij, aby zareagować
+:smiling_face_with_3_hearts:
+Kliknij, aby zareagować
+:joy:
+Kliknij, aby zareagować
+Dodaj reakcję
+Edytuj
+Przekaż dalej
+Więcej
 
-      // i kolejne obrazy dla Hounds rozdział 1
-    ]
-  }
+      // ... reszta obrazków rozdziału 1
+    ],
+    2: [] // na razie puste
+  },
+  thehounds: { 1: [] },
+  loveremedy: { 1: [] },
+  devilsknight: { 1: [] }
 };
 
-// 3️⃣ Wstawiamy obrazki do kontenera
+// Wstawiamy obrazki
 const container = document.getElementById("comic-container");
-
 if (comics[comic] && comics[comic][chapter]) {
   comics[comic][chapter].forEach(src => {
     const img = document.createElement("img");
     img.src = src;
-    img.style.width = "100vw";
-    img.style.display = "block";
-    img.style.marginBottom = "0";
     container.appendChild(img);
   });
 } else {
-  container.innerHTML = "<p style='color:white; text-align:center; padding:50px;'>Brak obrazków dla tego rozdziału.</p>";
+  container.innerHTML = "<p style='color:white;text-align:center;padding:50px;'>Brak obrazków dla tego rozdziału.</p>";
 }
-</script>
-<script>
-const params = new URLSearchParams(window.location.search);
-const comic = params.get("comic");
 
+// Zapis ostatnio czytanych komiksów
 if (comic) {
   let recent = JSON.parse(localStorage.getItem("recentComics")) || [];
-
-  // usuń duplikaty
   recent = recent.filter(c => c !== comic);
-
-  // dodaj na początek
   recent.unshift(comic);
-
-  // max 3
   recent = recent.slice(0, 3);
-
   localStorage.setItem("recentComics", JSON.stringify(recent));
 }
 </script>
