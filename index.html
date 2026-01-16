@@ -157,14 +157,43 @@ body {
   50% { background-position: 100% 100%; }
   100% { background-position: 0% 0%; }
 }
+/* ===== HERO / LOGO ===== */
+.hero {
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #222, #111);
+  overflow: hidden;
+}
+
+.hero img {
+  max-width: 420px;
+  width: 80%;
+  opacity: 0.9;
+}
+
+  .brand {
+  text-align: center;
+}
+
+.brand p {
+  margin-top: 12px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
 
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="hero">
+  <div class="brand">
   <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/okladka.png">
+     <p>FurinxManhwa</p>
+     </div>
 </header>
 
 <!-- ===== OSTATNIO CZYTANE (NOWE, ALE NIE RUSZA UI) ===== -->
