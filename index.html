@@ -144,6 +144,20 @@ h1, h2 {
   .arrow { display: none; }
 }
 
+  /* ===== POWOLNY RUCH TŁA ===== */
+body {
+  /* gradient, możesz zmienić kolory jak chcesz */
+  background: linear-gradient(120deg, #111 0%, #222 50%, #111 100%);
+  background-size: 400% 400%; /* wielkość gradientu dla ruchu */
+  animation: moveBackground 30s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
 </style>
 </head>
 
