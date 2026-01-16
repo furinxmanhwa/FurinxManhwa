@@ -124,7 +124,7 @@ h2 {
   100% { text-shadow: 0 0 5px rgba(255,255,255,0.4); }
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   animation: glowPulse 2.5s infinite ease-in-out;
 }
 
@@ -231,6 +231,59 @@ body::before {
   z-index: -1;
 }
 
+  .updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.update-card {
+  display: flex;
+  gap: 12px;
+  text-decoration: none;
+  background: rgba(0,0,0,0.45);
+  border-radius: 12px;
+  padding: 10px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.update-card:hover {
+  transform: scale(1.02);
+  background: rgba(0,0,0,0.65);
+}
+
+.update-card img {
+  width: 70px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.update-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.update-title {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.update-chapter {
+  color: #ccc;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.update-time {
+  font-size: 12px;
+  color: #888;
+}
+
 </style>
 </head>
 
@@ -244,6 +297,19 @@ body::before {
 <h2 id="recent-title" style="display:none;">Ostatnio czytane</h2>
 <div id="recent-wrapper"></div>
 
+  <h4 class="section-title">Nowy rozdział</h4>
+  <div class="updates-list">
+
+  <a class="update-card" href="reader.html?comic=swallowyouwhole&chapter=1">
+    <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/Untitled4_20260106130140.png" alt="">
+    <div class="update-info">
+      <p class="update-title">Swallow You Whole</p>
+      <p class="update-chapter">Rozdział 1</p>
+      <span class="update-time">2 dni temu</span>
+    </div>
+  </a>
+
+    
 <h1>Komiksy</h1>
 
 <div class="scroll-wrapper">
