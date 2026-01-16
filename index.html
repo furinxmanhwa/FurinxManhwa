@@ -92,6 +92,17 @@ h2 {
   font-weight: 600;
 }
 
+  /* ===== ANIMOWANY NAGŁÓWEK (h1 + h2) ===== */
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 5px rgba(255,255,255,0.4); }
+  50% { text-shadow: 0 0 20px rgba(255,255,255,0.8); }
+  100% { text-shadow: 0 0 5px rgba(255,255,255,0.4); }
+}
+
+h1, h2 {
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
   /* ===== STATUS ===== */
 .status {
   position: absolute;
