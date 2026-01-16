@@ -47,37 +47,49 @@ h2 {
 }
 
 /* ===== KARTA KOMIKSU ===== */
+/* ===== KARTA KOMIKSU ===== */
 .comic-card {
   flex: 0 0 auto;
   text-align: center;
   text-decoration: none;
   color: white;
+  position: relative; /* WAŻNE dla efektów */
 }
 
+/* OKŁADKA */
 .comic-card img {
   width: 300px;
   border-radius: 9px;
-  transition: transform 0.2s;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-.comic-card img:hover {
-  transform: scale(1.05);
+/* HOVER – ZOOM + CIEMNIEJE */
+.comic-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.7);
 }
 
+/* HOVER – GRADIENT OD DOŁU */
+.comic-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+/* Gradient aktywny przy hoverze */
+.comic-card:hover::before {
+  opacity: 1;
+}
+
+/* TEKST POD OKŁADKĄ */
 .comic-card p {
   font-size: 30px;
   margin-top: 10px;
   font-weight: 600;
-}
-
-  /* TEST A — ZOOM + CIEMNIEJE */
-.comic-card img {
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.comic-card:hover img {
-  transform: scale(1.08);
-  filter: brightness(0.7);
 }
 
   /* ===== STATUS ===== */
