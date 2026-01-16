@@ -159,30 +159,33 @@ body {
 }
 /* ===== HERO / LOGO ===== */
 .hero {
-  height: 300px;
+  position: relative;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #222, #111);
-  overflow: hidden;
+  pointer-events: none;
 }
 
-.hero img {
+/* LOGO */
+.hero .logo {
   max-width: 420px;
-  width: 80%;
+  width: 70%;
   opacity: 0.9;
+  filter: drop-shadow(0 0 20px rgba(0,0,0,0.6));
 }
 
-  .brand {
-  text-align: center;
+/* FADE DO TREŚCI */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(17,17,17,1));
 }
 
-.brand p {
-  margin-top: 12px;
-  opacity: 0.6;
-  letter-spacing: 2px;
-  font-size: 14px;
-}
 
   /* ===== ROZMAZANE TŁO Z PARALLAX ===== */
 body {
@@ -209,10 +212,7 @@ body::before {
 <body>
 
 <header class="hero">
-  <div class="brand">
-  <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/IMG_20260116_145528.png">
-     <p>FurinxManhwa</p>
-     </div>
+  <img class="logo" src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/IMG_20260116_145528.png"  alt="FurinxManhwa">
 </header>
 
 <!-- ===== OSTATNIO CZYTANE (NOWE, ALE NIE RUSZA UI) ===== -->
