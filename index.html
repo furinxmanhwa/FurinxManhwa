@@ -68,6 +68,16 @@ h2 {
   filter: brightness(0.7);
 }
 
+  /* ===== CARD LIFT (SUBTELNE PODNIESIENIE) ===== */
+.comic-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.comic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+}
+
 /* HOVER – GRADIENT OD DOŁU */
 .comic-card::before {
   content: "";
