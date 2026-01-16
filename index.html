@@ -92,6 +92,17 @@ h2 {
   font-weight: 600;
 }
 
+  /* ===== ANIMOWANY NAGŁÓWEK (h1 + h2) ===== */
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 5px rgba(255,255,255,0.4); }
+  50% { text-shadow: 0 0 20px rgba(255,255,255,0.8); }
+  100% { text-shadow: 0 0 5px rgba(255,255,255,0.4); }
+}
+
+h1, h2 {
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
   /* ===== STATUS ===== */
 .status {
   position: absolute;
@@ -132,27 +143,6 @@ h2 {
   .comic-card p { font-size: 22px; }
   .arrow { display: none; }
 }
-  /* ===== GLOW / PULS dla kategorii ===== */
-<h2 class="category-white">Ostatnio czytane</h2>
-<h2 class="category-black">Komiksy</h2>
-
-/* Animacje dla kolorów */
-@keyframes glowPulsewhite {
-  0% { text-shadow: 0 0 5px rgba(255,100,100,0.4); }
-  50% { text-shadow: 0 0 20px rgba(255,100,100,0.8); }
-  100% { text-shadow: 0 0 5px rgba(255,100,100,0.4); }
-}
-
-@keyframes glowPulseblack {
-  0% { text-shadow: 0 0 5px rgba(100,150,255,0.4); }
-  50% { text-shadow: 0 0 20px rgba(100,150,255,0.8); }
-  100% { text-shadow: 0 0 5px rgba(100,150,255,0.4); }
-}
-
-
-/* Przypisanie animacji do klasy */
-.category-white { animation: glowPulseRed 2.5s infinite ease-in-out; }
-.category-black { animation: glowPulseBlue 2.5s infinite ease-in-out; }
 
 </style>
 </head>
