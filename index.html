@@ -92,27 +92,8 @@ h2 {
   font-weight: 600;
 }
 
-  <h2 class="category-white">Ostatnio czytane</h2>
+  <h1 class="category-white">Ostatnio czytane</h1>
 <h2 class="category-black">Komiksy</h2>
-  /* ===== ANIMOWANY NAGŁÓWEK (h1 + h2) ===== */
-/* Animacja dla dowolnej kategorii */
-@keyframes glowPulsewhite {
-  0% { text-shadow: 0 0 5px rgba(255,100,100,0.4); }
-  50% { text-shadow: 0 0 20px rgba(255,100,100,0.8); }
-  100% { text-shadow: 0 0 5px rgba(255,100,100,0.4); }
-}
-
-@keyframes glowPulseblack {
-  0% { text-shadow: 0 0 5px rgba(100,150,255,0.4); }
-  50% { text-shadow: 0 0 20px rgba(100,150,255,0.8); }
-  100% { text-shadow: 0 0 5px rgba(100,150,255,0.4); }
-}
-
-/* Przypisanie animacji do klasy */
-.category-white { animation: glowPulseRed 2.5s infinite ease-in-out; }
-.category-black { animation: glowPulseBlue 2.5s infinite ease-in-out; }
-
-
 
   /* ===== STATUS ===== */
 .status {
@@ -154,6 +135,26 @@ h2 {
   .comic-card p { font-size: 22px; }
   .arrow { display: none; }
 }
+  /* ===== GLOW / PULS dla kategorii ===== */
+
+/* Animacje dla kolorów */
+@keyframes glowPulsewhite {
+  0% { text-shadow: 0 0 5px rgba(255,100,100,0.4); }
+  50% { text-shadow: 0 0 20px rgba(255,100,100,0.8); }
+  100% { text-shadow: 0 0 5px rgba(255,100,100,0.4); }
+}
+
+@keyframes glowPulseblack {
+  0% { text-shadow: 0 0 5px rgba(100,150,255,0.4); }
+  50% { text-shadow: 0 0 20px rgba(100,150,255,0.8); }
+  100% { text-shadow: 0 0 5px rgba(100,150,255,0.4); }
+}
+
+
+/* Przypisanie animacji do klasy */
+.category-white { animation: glowPulseRed 2.5s infinite ease-in-out; }
+.category-black { animation: glowPulseBlue 2.5s infinite ease-in-out; }
+
 </style>
 </head>
 
