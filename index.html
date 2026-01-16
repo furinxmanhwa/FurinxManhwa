@@ -30,6 +30,10 @@ h2 {
   font-size:50px;
 }
 
+  h3 {
+  margin:16px;
+  font-size:50px;
+}
 /* ===== SCROLL ===== */
 .scroll-wrapper {
   position: relative;
@@ -108,7 +112,7 @@ h2 {
   100% { text-shadow: 0 0 5px rgba(255,255,255,0.4); }
 }
 
-h1, h2 {
+h1, h2, h3 {
   animation: glowPulse 2.5s infinite ease-in-out;
 }
 
@@ -247,9 +251,9 @@ body::before {
         <p>The Hounds Of Sisyphus</p>
       </a>
 
-      <a class="comic-card" href="comic-love-remedy.html">
-        <img src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg">
-        <p>Love Remedy</p>
+      <a class="comic-card" href="comic-the-pizza-delivery-man-and-the-gold-palace.html">
+        <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/pizza.png">
+        <p>The Pizza Delivery Man and the Gold Palace</p>
       </a>
 
       <a class="comic-card" href="comic-devils-knight.html">
@@ -263,6 +267,19 @@ body::before {
   <button class="arrow right">›</button>
 </div>
 
+  <h3>Thriller</h3>
+
+<div class="scroll-wrapper">
+  <button class="arrow left">‹</button>
+
+  <div class="scroll-container">
+    <div class="scroll-row">
+
+    <a class="comic-card" href="comic-the-hounds-of-sisyphus.html">
+        <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/thos.png">
+        <p>The Hounds Of Sisyphus</p>
+      </a>
+      
 <script>
 /* STRZAŁKI – TWOJE, NIETKNIĘTE */
 document.querySelectorAll(".scroll-wrapper").forEach(wrapper => {
@@ -294,8 +311,8 @@ const comicsData = {
   },
   thepizzadeliverymanandthegoldpalace: {
     name: "The Pizza Delivery Man and the Gold Palace",
-    cover: "https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/love%20remedy.jpeg",
-    link: "comic-love-remedy.html"
+    cover: "https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/pizza.png",
+    link: "comic-the-pizza-delivery-man-and-the-gold-palace.html"
   },
   devilsknight: {
     name: "Devil's Knight",
