@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Swallow You Whole – Rozdziały</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -112,46 +113,44 @@ a {
 
 <a class="back" href="index.html">← Powrót</a>
 
-<img
-  class="cover"
-  src="https://pub-136ea5dc5f21492a9030316f07b17eeb.r2.dev/Swallow_You_Whole.jpg"
-  alt="Swallow You Whole"
->
+<img class="cover" id="cover" src="" alt="Okładka">
 
-<div class="comic-tags">
-  <span>BL</span>
-  <span>+18</span>
-  <span>Omegaverse</span>
-  <span>Nadprzyrodzone</span>
-  <span>Różnica wieku</span>
-</div>
+<div class="comic-tags" id="tags"></div>
 
 <div class="comic-desc-container">
-  <p class="comic-desc">
-    Jaheon pochodzi z rodu omeg, które co dwanaście lat muszą wysyłać kogoś na ofiarę Wężowemu Bogu. Od dziecka wie, że to on będzie następny. Kiedy trafia do legowiska Pana Mugo, odkrywa, że bóg, którego znał z legend, wcale nie jest tym, kim myślał, a on sam nie ma ochoty być pożarty. Czy bóg okaże litość? Czy ofiara może stać się czymś więcej niż przekąską? 
-  </p>
+  <p class="comic-desc" id="desc"></p>
 </div>
 
 <div class="section">
   <h2>Rozdziały</h2>
-  <ul class="chapter-list" id="chapter-list">
-    <!-- tu pojawią się rozdziały z JSON -->
-  </ul>
+  <ul class="chapter-list" id="chapter-list"></ul>
 </div>
 
 <script>
-(async function() {
+(async () => {
   const comicKey = "swallowyouwhole";
-
   const res = await fetch(`comics/${comicKey}.json`);
   const data = await res.json();
 
-  const chapterList = document.getElementById("chapter-list");
+  // wstaw opis, tagi, okładkę
+  document.getElementById("cover").src = data.cover;
+  document.getElementById("desc").textContent = data.desc || "";
 
-  Object.keys(data.chapters).sort((a,b)=>a-b).forEach(ch => {
+  const tagsContainer = document.getElementById("tags");
+  (data.tags || []).forEach(tag => {
+    const span = document.createElement("span");
+    span.textContent = tag;
+    tagsContainer.appendChild(span);
+  });
+
+  // rozdziały
+  const chapters = Object.keys(data.chapters || {}).sort((a,b)=>a-b);
+  const list = document.getElementById("chapter-list");
+
+  chapters.forEach(ch => {
     const li = document.createElement("li");
     li.innerHTML = `<a href="reader.html?comic=${comicKey}&chapter=${ch}">Rozdział ${ch}</a>`;
-    chapterList.appendChild(li);
+    list.appendChild(li);
   });
 })();
 </script>
