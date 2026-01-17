@@ -14,50 +14,13 @@ body {
   color: white;
   font-family: Arial, sans-serif;
 }
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-/* ===== POWRÓT ===== */
-.back {
-  display: block;
-  padding: 50px;
-  font-size: 50px;
-}
-
-/* ===== OKŁADKA ===== */
-.cover {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  display: block;
-  border-radius: 12px;
-}
-
-/* ===== SEKCJA ROZDZIAŁÓW ===== */
-.section {
-  padding: 24px 16px;
-}
-
-.section h2 {
-  font-size: 50px;
-  font-weight: 600;
-  margin-bottom: 50px;
-}
-
-/* ===== LISTA ROZDZIAŁÓW ===== */
-.chapter-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.chapter-list li {
-  margin-bottom: 18px;
-}
-
+a { color: white; text-decoration: none; }
+.back { display: block; padding: 50px; font-size: 50px; }
+.cover { width: 100%; max-width: 100%; margin: 0 auto; display: block; border-radius: 12px; }
+.section { padding: 24px 16px; }
+.section h2 { font-size: 50px; font-weight: 600; margin-bottom: 50px; }
+.chapter-list { list-style: none; padding: 0; margin: 0; }
+.chapter-list li { margin-bottom: 18px; }
 .chapter-list a {
   display: block;
   background: #1c1c1c;
@@ -66,19 +29,8 @@ a {
   font-size: 45px;
   font-weight: 600;
 }
-
-.chapter-list a:active {
-  background: #2a2a2a;
-}
-
-/* ===== OPIS KOMIKSU ===== */
-.comic-tags {
-  display: flex;
-  gap: 8px;
-  margin: 8px 0;
-  flex-wrap: wrap;
-}
-
+.chapter-list a:active { background: #2a2a2a; }
+.comic-tags { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
 .comic-tags span {
   font-family: 'Libre Baskerville', serif;
   font-size: 32px;
@@ -88,16 +40,7 @@ a {
   color: #bbb;
   letter-spacing: 0.4px;
 }
-
-.comic-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 32px;
-  color: #e0e0e0;
-  line-height: 1.7;
-  max-width: 600px;
-  letter-spacing: 0.3px;
-}
-
+.comic-desc { font-family: 'Inter', sans-serif; font-size: 32px; color: #e0e0e0; line-height: 1.7; max-width: 600px; letter-spacing: 0.3px; }
 .comic-desc-container {
   display: flex;
   justify-content: center;
@@ -113,7 +56,7 @@ a {
 
 <a class="back" href="index.html">← Powrót</a>
 
-<img class="cover" id="cover" src="" alt="Okładka">
+<img class="cover" id="cover" src="" alt="">
 
 <div class="comic-tags" id="tags"></div>
 
@@ -123,35 +66,39 @@ a {
 
 <div class="section">
   <h2>Rozdziały</h2>
-  <ul class="chapter-list" id="chapter-list"></ul>
+  <ul class="chapter-list" id="chapters"></ul>
 </div>
 
 <script>
-(async () => {
+(async function() {
+  // nazwa pliku JSON
   const comicKey = "swallowyouwhole";
-  const res = await fetch(`comics/${comicKey}.json`);
+  const jsonUrl = `${comicKey}.json`; // jeśli JSON jest w tym samym folderze
+
+  const res = await fetch(jsonUrl);
   const data = await res.json();
 
-  // wstaw opis, tagi, okładkę
+  // Ustaw cover, desc, tagi
   document.getElementById("cover").src = data.cover;
-  document.getElementById("desc").textContent = data.desc || "";
+  document.getElementById("cover").alt = comicKey;
 
-  const tagsContainer = document.getElementById("tags");
-  (data.tags || []).forEach(tag => {
-    const span = document.createElement("span");
-    span.textContent = tag;
-    tagsContainer.appendChild(span);
-  });
+  document.getElementById("desc").innerText = data.desc;
 
-  // rozdziały
-  const chapters = Object.keys(data.chapters || {}).sort((a,b)=>a-b);
-  const list = document.getElementById("chapter-list");
+  document.getElementById("tags").innerHTML = data.tags
+    .map(t => `<span>${t}</span>`)
+    .join("");
 
-  chapters.forEach(ch => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="reader.html?comic=${comicKey}&chapter=${ch}">Rozdział ${ch}</a>`;
-    list.appendChild(li);
-  });
+  // Rozdziały
+  const chapterList = document.getElementById("chapters");
+  chapterList.innerHTML = Object.keys(data.chapters)
+    .sort((a,b)=>Number(a)-Number(b))
+    .map(ch => `
+      <li>
+        <a href="reader.html?comic=${comicKey}&chapter=${ch}">
+          Rozdział ${ch}
+        </a>
+      </li>
+    `).join("");
 })();
 </script>
 
