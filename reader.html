@@ -6,7 +6,6 @@
 <style>
 body { margin:0; background:black; }
 img { display:block; width:100vw; }
-p { color:white; text-align:center; padding:50px; }
 </style>
 </head>
 <body>
@@ -17,47 +16,36 @@ p { color:white; text-align:center; padding:50px; }
 (async function() {
   const params = new URLSearchParams(window.location.search);
   const comicKey = params.get("comic");
-  const chapter = Number(params.get("chapter"));
-
-  const container = document.getElementById("comic-container");
+  const chapter = params.get("chapter");
 
   if (!comicKey || !chapter) {
-    container.innerHTML = "<p>Brak komiksu lub rozdziału w URL.</p>";
+    document.getElementById("comic-container").innerHTML =
+      "<p style='color:white; text-align:center; padding:50px;'>Brak parametru comic lub chapter.</p>";
     return;
   }
 
-  /* ===== OSTATNIO CZYTANE – ZAPIS ===== */
-  const recentKey = "recentComics";
-  let recent = JSON.parse(localStorage.getItem(recentKey)) || [];
-
-  recent = recent.filter(c => c !== comicKey);
-  recent.unshift(comicKey);
-  recent = recent.slice(0, 10);
-  localStorage.setItem(recentKey, JSON.stringify(recent));
-
-  /* ===== POBIERZ JSON KOMIKSU ===== */
   try {
-    const res = await fetch(`comics/${comicKey}.json`);
-
-    if (!res.ok) {
-      throw new Error("Nie udało się pobrać danych komiksu.");
-    }
-
+    const res = await fetch(comicKey + ".json");
     const data = await res.json();
 
-    if (!data.chapters || !data.chapters[chapter]) {
-      container.innerHTML = "<p>Brak obrazków dla tego rozdziału.</p>";
+    const pages = data.chapters?.[chapter];
+
+    if (!pages || pages.length === 0) {
+      document.getElementById("comic-container").innerHTML =
+        "<p style='color:white; text-align:center; padding:50px;'>Brak obrazków dla tego rozdziału.</p>";
       return;
     }
 
-    data.chapters[chapter].forEach(src => {
+    const container = document.getElementById("comic-container");
+    pages.forEach(src => {
       const img = document.createElement("img");
       img.src = src;
       container.appendChild(img);
     });
 
   } catch (e) {
-    container.innerHTML = `<p>Błąd: ${e.message}</p>`;
+    document.getElementById("comic-container").innerHTML =
+      "<p style='color:white; text-align:center; padding:50px;'>Błąd wczytywania pliku JSON.</p>";
   }
 })();
 </script>
