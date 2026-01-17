@@ -18,6 +18,24 @@ img { display:block; width:100vw; }
   const comicKey = params.get("comic");
   const chapter = Number(params.get("chapter"));
 
+  /* ===== OSTATNIO CZYTANE – ZAPIS ===== */
+if (comicKey) {
+  const recentKey = "recentComics";
+  let recent = JSON.parse(localStorage.getItem(recentKey)) || [];
+
+  // usuń duplikaty
+  recent = recent.filter(c => c !== comicKey);
+
+  // dodaj na początek
+  recent.unshift(comicKey);
+
+  // limit (np. 10)
+  recent = recent.slice(0, 10);
+
+  localStorage.setItem(recentKey, JSON.stringify(recent));
+}
+
+
   const comics = {
     swallowyouwhole: {
       1: [
