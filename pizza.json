@@ -21,7 +21,7 @@
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/1/1%20P%2043-45.jpg",
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/1/1%20P%2046-47.jpg"
       ],
-      2: [
+      "2": [
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/2/P%201-4.jpg",
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/2/P%205-8.jpg",
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/2/P%209-14.jpg",
@@ -35,6 +35,6 @@
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/2/P%2041-45.jpg",
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/2/P%2046-48.jpg",
         "https://pub-9b851339398240699a792a411e7ece21.r2.dev/rozdzilypizza/2/P%2049-50.jpg"
-    ]
+      ]
   }
 }
