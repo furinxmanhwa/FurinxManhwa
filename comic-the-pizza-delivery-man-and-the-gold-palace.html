@@ -136,18 +136,18 @@ a {
     document.getElementById("tags").innerHTML =
       data.tags.map(tag => `<span>${tag}</span>`).join("");
 
-    // Rozdziały
-    const chaptersEl = document.getElementById("chapters");
-    chaptersEl.innerHTML = Object.keys(data.chapters)
-      .sort((a, b) => Number(a) - Number(b))
-      .map(ch => `
-        <li>
-          <a href="reader.html?comic=${comicKey}&chapter=${ch}">
-            Rozdział ${ch}
-          </a>
-        </li>
-      `)
-      .join("");
+   <ul class="chapter-list">
+  <li>
+    <a href="reader.html?comic=thepizzadeliverymanandthegoldpalace&chapter=chapter=1">
+      Prolog
+    </a>
+  </li>
+
+  <li>
+    <a href="reader.html?comic=thepizzadeliverymanandthegoldpalace&chapter=2">
+      Rozdział 1
+    </a>
+  </li>
 
   } catch (err) {
     console.error(err);
