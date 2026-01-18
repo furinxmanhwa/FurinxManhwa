@@ -2,55 +2,25 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>The Pizza Delivery Man and the Gold Palace – Rozdziały</title>
+<title> –The Pizza Delivery Man and the Gold Palace Rozdziały</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ===== RESET / BAZA ===== */
 body {
   margin: 0;
   background: #111;
   color: white;
   font-family: Arial, sans-serif;
 }
-
-a {
-  color: white;
-  text-decoration: none;
-}
-
-.back {
-  display: block;
-  padding: 50px;
-  font-size: 50px;
-}
-
-.cover {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-}
-
-.section {
-  padding: 24px 16px;
-}
-
-.section h2 {
-  font-size: 50px;
-  font-weight: 600;
-  margin-bottom: 50px;
-}
-
-.chapter-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.chapter-list li {
-  margin-bottom: 18px;
-}
-
+a { color: white; text-decoration: none; }
+.back { display: block; padding: 50px; font-size: 50px; }
+.cover { width: 100%; max-width: 100%; margin: 0 auto; display: block; border-radius: 12px; }
+.section { padding: 24px 16px; }
+.section h2 { font-size: 50px; font-weight: 600; margin-bottom: 50px; }
+.chapter-list { list-style: none; padding: 0; margin: 0; }
+.chapter-list li { margin-bottom: 18px; }
 .chapter-list a {
   display: block;
   background: #1c1c1c;
@@ -59,40 +29,25 @@ a {
   font-size: 45px;
   font-weight: 600;
 }
-
-.chapter-list a:active {
-  background: #2a2a2a;
-}
-
-.comic-tags {
-  display: flex;
-  gap: 8px;
-  margin: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
+.chapter-list a:active { background: #2a2a2a; }
+.comic-tags { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
 .comic-tags span {
+  font-family: 'Libre Baskerville', serif;
   font-size: 32px;
   padding: 6px 14px;
   border-radius: 999px;
   background: rgba(255,255,255,0.08);
   color: #bbb;
+  letter-spacing: 0.4px;
 }
-
+.comic-desc { font-family: 'Inter', sans-serif; font-size: 32px; color: #e0e0e0; line-height: 1.7; max-width: 600px; letter-spacing: 0.3px; }
 .comic-desc-container {
   display: flex;
   justify-content: center;
-  padding: 16px;
+  align-items: center;
+  min-height: 30vh;
+  padding: 0 5px;
   text-align: center;
-}
-
-.comic-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 32px;
-  color: #e0e0e0;
-  line-height: 1.7;
-  max-width: 600px;
 }
 </style>
 </head>
@@ -101,7 +56,7 @@ a {
 
 <a class="back" href="index.html">← Powrót</a>
 
-<img class="cover" id="cover" alt="Okładka komiksu">
+<img class="cover" id="cover" src="" alt="">
 
 <div class="comic-tags" id="tags"></div>
 
@@ -111,48 +66,41 @@ a {
 
 <div class="section">
   <h2>Rozdziały</h2>
-  <ul class="chapter-list" id="chapters" >
-  <li>
-    <a href="reader.html?comic=thepizzadeliverymanandthegoldpalace&chapter=1">
-      Rozdział 1
-    </a>
-  </li>
-
-  <li>
-    <a href="reader.html?comic=thepizzadeliverymanandthegoldpalace&chapter=2">
-      Rozdział 2
-    </a>
-  </li>
-</ul>
-
+    <ul class="chapter-list">
+      <li><a href="reader.html?comic=thehoundsofsisyphus&chapter=0">Rozdział 1</a></li>
+      </ul>
 </div>
 
 <script>
-<script>
-(async function () {
-  const comicKey = "thepizzadeliverymanandthegoldpalace";
+(async function() {
+  // nazwa pliku JSON
+  const comicKey = "thehoundsofsisyphus";
+  const jsonUrl = `${comicKey}.json`; // jeśli JSON jest w tym samym folderze
 
-  try {
-    const res = await fetch(`${comicKey}.json`);
-    if (!res.ok) throw new Error("JSON not found");
+  const res = await fetch(jsonUrl);
+  const data = await res.json();
 
-    const data = await res.json();
+  // Ustaw cover, desc, tagi
+  document.getElementById("cover").src = data.cover;
+  document.getElementById("cover").alt = comicKey;
 
-    // OKŁADKA
-    document.getElementById("cover").src = data.cover;
+  document.getElementById("desc").innerText = data.desc;
 
-    // OPIS
-    document.getElementById("desc").textContent = data.desc;
+  document.getElementById("tags").innerHTML = data.tags
+    .map(t => `<span>${t}</span>`)
+    .join("");
 
-    // TAGI
-    document.getElementById("tags").innerHTML =
-      data.tags.map(t => `<span>${t}</span>`).join("");
-
-  } catch (e) {
-    console.error(e);
-    document.getElementById("desc").textContent =
-      "Błąd ładowania danych komiksu.";
-  }
+  // Rozdziały
+  const chapterList = document.getElementById("chapters");
+  chapterList.innerHTML = Object.keys(data.chapters)
+    .sort((a,b)=>Number(a)-Number(b))
+    .map(ch => `
+      <li>
+        <a href="reader.html?comic=${comicKey}&chapter=${ch}">
+          Rozdział ${ch}
+        </a>
+      </li>
+    `).join("");
 })();
 </script>
 
