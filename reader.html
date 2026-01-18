@@ -41,7 +41,6 @@ img {
 
     const data = await res.json();
 
-    // chapters może mieć klucze jako stringi
     const pages = data.chapters[String(chapter)];
 
     if (!pages || pages.length === 0) {
@@ -53,7 +52,7 @@ img {
     pages.forEach(src => {
       const img = document.createElement("img");
       img.src = src;
-      img.loading = "lazy"; // 🔥 duży plus wydajności
+      img.loading = "lazy";
       container.appendChild(img);
     });
 
@@ -61,3 +60,9 @@ img {
     console.error(err);
     container.innerHTML =
       "<p style='color:white;text-align:center;padding:50px;'>Błąd wczytywania pliku JSON.</p>";
+  }
+})();
+</script>
+
+</body>
+</html>
