@@ -50,12 +50,18 @@ img {
       return;
     }
 
-    pages.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.loading = "lazy";
-      container.appendChild(img);
-    });
+    pages.forEach((src, index) => {
+  const img = document.createElement("img");
+  img.src = src;
+
+  // ⬇️ pierwsza strona BEZ lazy
+  if (index !== 0) {
+    img.loading = "lazy";
+  }
+
+  container.appendChild(img);
+});
+
 
   } catch (err) {
     console.error(err);
