@@ -329,28 +329,39 @@ body::before {
       </a>
 
       <a class="comic-card" href="comic-the-hounds-of-sisyphus.html" data-comic="thehoundsofsisyphus">
+        <span class="status">W trakcie</span>
         <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/thos.png">
         <p>The Hounds Of Sisyphus</p>
       </a>
 
       <a class="comic-card" href="comic-pizza.html" data-comic="pizza">
+        <span class="status">W trakcie</span>
         <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/pizza.png">
         <p>The Pizza Delivery Man and the Gold Palace</p>
       </a>
 
       <a class="comic-card" href="comic-devils-knight.html" data-comic="devilsknight">
+        <span class="status">W trakcie</span>
         <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/Dk.png">
         <p>Devil's Knight</p>
       </a>
 
       <a class="comic-card" href="comic-husband.html" data-comic="husband">
+        <span class="status">W trakcie</span>
         <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/uaph.png">
         <p>Young and Pretty Husband</p>
       </a>
 
       <a class="comic-card" href="comic-mirror.html" data-comic="mirror">
+        <span class="status">W trakcie</span>
         <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/mirror%2C%20mirror.png">
         <p>Mirror, mirror</p>
+      </a>
+
+       <a class="comic-card" href="comic-santa.html" data-comic="santa">
+         <span class="status">Zakończone</span>
+        <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/Santa.webp">
+        <p>Santa</p>
       </a>
       
     </div>
@@ -368,6 +379,7 @@ body::before {
     <div class="scroll-row">
 
     <a class="comic-card" href="comic-the-hounds-of-sisyphus.html"  data-comic="thehoundsofsisyphus">
+      <span class="status">W trakcie</span>
         <img src="https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/thos.png">
         <p>The Hounds Of Sisyphus</p>
     </a>
@@ -431,7 +443,11 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Mirror, mirror",
       cover: "https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/mirror%2C%20mirror.png",
       link: "comic-mirror.html"
-    }
+    },
+    mirror: {
+      name: "Santa",
+      cover: "https://pub-03107a31d2b74d229162ef805e24eed7.r2.dev/Santa.webp",
+      link: "comic-santa.html"
   };
 
   // filtrujemy tylko te klucze, które istnieją w comicsData
